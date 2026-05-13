@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Админка заявок</title>
+<link rel="stylesheet" href="/styles.css">
+<style>
+
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+.card{
+  background:#1f2937;
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:10px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.phone{
+  color:#22c55e;
+}
+
+.comment{
+  margin-top:10px;
+  color:#cbd5e1;
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.delete{
+  background:#ef4444;
+  color:white;
+}
+
+.status{
+  background:#334155;
+  color:white;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.refresh{
+  background:#22c55e;
+  color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topbar">
+<h1>📊 Заявки</h1>
+
+<button class="refresh" onclick="loadLeads()">
+Обновить
+</button>
+</div>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+
+const API = 'http://localhost:5000/api/leads';
+
+async function loadLeads(){
+
+  const res = await fetch(API);
+  const data = await res.json();
+
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  data.data.forEach(lead => {
+
+    const div = document.createElement('div');
+    div.className = 'card';
+
+    div.innerHTML = `
+      <div class="row">
+        <div>
+          <strong>${lead.name}</strong><br>
+          <span class="phone">${lead.phone}</span>
+        </div>
+
+        <div>
+          <button class="status">
+            ${lead.status || 'new'}
+          </button>
+
+          <button class="delete"
+            onclick="deleteLead('${lead.id}')">
+            удалить
+          </button>
+        </div>
+      </div>
+
+      <div class="comment">
+        ${lead.comment}
+      </div>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+async function deleteLead(id){
+
+  await fetch(API + '/' + id, {
+    method:'DELETE'
+  });
+
+  loadLeads();
+}
+
+loadLeads();
+
+</script>
+
+</body>
+</html>

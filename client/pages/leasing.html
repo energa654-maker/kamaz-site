@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Лизинг КАМАЗ — условия и расчет</title>
+
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/layout.js"></script>
+
+  <style>
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1f2937, #0b1220);
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .box {
+      background: #111827;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    .box h3 {
+      margin-bottom: 10px;
+    }
+
+    .calc {
+      margin-top: 40px;
+      background: #0f172a;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+    }
+
+    .btn {
+      background: #22c55e;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #22c55e;
+    }
+  </style>
+</head>
+
+<body>
+
+<script>renderHeader()</script>
+
+<div class="hero">
+  <h1>🚛 Лизинг КАМАЗ</h1>
+  <p>Получите технику без полной оплаты — платите удобными ежемесячными платежами</p>
+</div>
+
+<div class="container">
+
+  <!-- ПРЕИМУЩЕСТВА -->
+  <div class="grid">
+
+    <div class="box">
+      <h3>💰 Без крупных вложений</h3>
+      <p>Старт от 0% первоначального взноса</p>
+    </div>
+
+    <div class="box">
+      <h3>📉 Налоговая выгода</h3>
+      <p>Лизинговые платежи списываются в расходы</p>
+    </div>
+
+    <div class="box">
+      <h3>🚚 Любая техника</h3>
+      <p>Самосвалы, тягачи, спецтехника</p>
+    </div>
+
+  </div>
+
+  <!-- КАЛЬКУЛЯТОР -->
+  <div class="calc">
+
+    <h2>📊 Калькулятор лизинга</h2>
+
+    <input id="price" placeholder="Стоимость техники (₽)">
+    <input id="percent" placeholder="Первоначальный взнос (%)">
+    <input id="months" placeholder="Срок (мес)">
+
+    <button class="btn" onclick="calcLease()">
+      Рассчитать
+    </button>
+
+    <div class="result" id="result"></div>
+
+  </div>
+
+</div>
+
+<script>
+function calcLease() {
+  const price = +document.getElementById('price').value;
+  const percent = +document.getElementById('percent').value;
+  const months = +document.getElementById('months').value;
+
+  const down = price * (percent / 100);
+  const monthly = (price - down) / months;
+
+  document.getElementById('result').innerText =
+    "Примерная ставка: " + monthly.toFixed(0) + " ₽ / мес";
+}
+</script>
+
+<script>renderFooter()</script>
+
+</body>
+</html>
