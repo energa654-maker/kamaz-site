@@ -212,7 +212,7 @@ async function sendLead(){
   const phone = document.getElementById('phone').value;
   const comment = document.getElementById('comment').value;
 
-  const res = await fetch('http://localhost:5000/api/leads', {
+  const res = await fetch('https://kamaz-site.onrender.com/api/leads', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({ name, phone, comment })
