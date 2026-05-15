@@ -1,522 +1,385 @@
 <!DOCTYPE html>
 <html lang="ru">
-  
+
 <head>
   <meta charset="UTF-8">
-  <title>КАМАЗ — Продажа спецтехники</title>
-<link rel="stylesheet" href="./styles.css">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #0b1220, #0f172a);
-      color: white;
-    }
+  <title>
+    КАМАЗ — Продажа спецтехники
+  </title>
 
-    header {
-      padding: 25px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: 700;
-      background: #0b0f1a;
-      border-bottom: 1px solid #1f2937;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding: 15px;
-      background: #111827;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav button {
-      padding: 10px 18px;
-      border: 1px solid #374151;
-      background: #1f2937;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    nav button:hover {
-      background: #334155;
-      transform: translateY(-2px);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    /* GRID */
-    .catalog {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-
-    /* CARD */
-    .card {
-      background: #111827;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid #1f2937;
-      transition: 0.3s;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: #334155;
-    }
-
-    .card img {
-      width: 100%;
-      height: 210px;
-      object-fit: cover;
-      transition: 0.3s;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-content {
-      padding: 15px;
-    }
-
-    .card h2 {
-      font-size: 18px;
-      margin: 0 0 8px;
-    }
-
-    .card p {
-      color: #94a3b8;
-      font-size: 14px;
-      margin: 0 0 10px;
-    }
-
-    .price {
-      color: #22c55e;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      font-size: 12px;
-      background: #334155;
-      border-radius: 6px;
-      margin-bottom: 8px;
-      color: #cbd5e1;
-    }
-
-    .buy {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background: linear-gradient(90deg, #22c55e, #16a34a);
-      color: white;
-      font-size: 15px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .buy:hover {
-      filter: brightness(1.1);
-    }
-
-    /* BANNER */
-    .banner {
-      margin: 20px 0 40px;
-      padding: 25px;
-      text-align: center;
-      background: linear-gradient(90deg, #1e293b, #0f172a);
-      border: 1px dashed #334155;
-      border-radius: 12px;
-      color: #cbd5e1;
-    }
-  </style>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-<!-- MODAL -->
-<div id="modal" style="
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-">
 
-  <div style="
-    background:#111827;
-    padding:25px;
-    border-radius:12px;
-    width:350px;
-  ">
+  <!-- HEADER -->
 
-    <h3>Оставить заявку</h3>
+  <header class="header">
 
-    <input id="name" placeholder="Имя"
-      style="width:100%; padding:10px; margin:10px 0;">
+    <div class="logo">
+      🚛 КАМАЗ Центр
+    </div>
 
-    <input id="phone" placeholder="Телефон"
-      style="width:100%; padding:10px; margin:10px 0;">
+    <nav class="nav">
 
-    <textarea id="comment" placeholder="Комментарий"
-      style="width:100%; padding:10px;"></textarea>
+      <a href="#catalog">
+        Каталог
+      </a>
 
-    <button onclick="sendLead()" style="
-      width:100%;
-      margin-top:10px;
-      padding:12px;
-      background:#22c55e;
-      border:none;
-      color:white;
-      border-radius:8px;
-    ">
-      Отправить
-    </button>
+      <a href="./pages/leasing.html">
+        Лизинг
+      </a>
 
-    <button onclick="closeModal()" style="
-      width:100%;
-      margin-top:10px;
-      padding:10px;
-      background:#374151;
-      border:none;
-      color:white;
-      border-radius:8px;
-    ">
-      Закрыть
-    </button>
+      <a href="#contacts">
+        Контакты
+      </a>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>
+      Официальная продажа техники КАМАЗ
+    </h1>
+
+    <p>
+      Новые тягачи, самосвалы и спецтехника
+      с доставкой по всей России
+    </p>
+
+    <div class="hero-buttons">
+
+      <a href="#catalog" class="hero-btn primary">
+        Смотреть каталог
+      </a>
+
+      <a href="./pages/leasing.html" class="hero-btn secondary">
+        Лизинг
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- CATALOG -->
+
+  <div class="container" id="catalog">
+
+    <h2 class="section-title">
+      Каталог техники
+    </h2>
+
+    <p class="section-subtitle">
+      Надежная техника КАМАЗ для бизнеса
+    </p>
+
+    <div class="catalog">
+
+      <!-- CARD 1 -->
+
+      <div class="card dump">
+
+        <img
+          src="/images/dump/6520-49 (B5)/1 (1).jpg"
+        >
+
+        <div class="card-content">
+
+          <div class="badge">
+            Самосвал
+          </div>
+
+          <h2>
+            КАМАЗ 6520-49 (B5)
+          </h2>
+
+          <p>
+            Самосвал 20 тонн
+          </p>
+
+          <div class="price">
+            8 500 000 ₽
+          </div>
+
+          <a href="./pages/6520.html">
+            <button class="buy">
+              Подробнее
+            </button>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="card dump">
+
+        <img
+          src="/images/dump/65115-6056-48/1 (1).jpg"
+        >
+
+        <div class="card-content">
+
+          <div class="badge">
+            Самосвал
+          </div>
+
+          <h2>
+            КАМАЗ 65115-6056-48
+          </h2>
+
+          <p>
+            Строительный самосвал
+          </p>
+
+          <div class="price">
+            7 900 000 ₽
+          </div>
+
+          <a href="./pages/65115.html">
+            <button class="buy">
+              Подробнее
+            </button>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="card truck">
+
+        <img
+          src="/images/truck/5490/1 (1).jpg"
+        >
+
+        <div class="card-content">
+
+          <div class="badge">
+            Тягач
+          </div>
+
+          <h2>
+            КАМАЗ 5490
+          </h2>
+
+          <p>
+            Магистральный тягач
+          </p>
+
+          <div class="price">
+            10 200 000 ₽
+          </div>
+
+          <a href="./pages/5490.html">
+            <button class="buy">
+              Подробнее
+            </button>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- CARD 4 -->
+
+      <div class="card truck">
+
+        <img
+          src="/images/truck/54901-70014-CA/1 (1).jpg"
+        >
+
+        <div class="card-content">
+
+          <div class="badge">
+            Тягач
+          </div>
+
+          <h2>
+            КАМАЗ 54901
+          </h2>
+
+          <p>
+            Современный тягач
+          </p>
+
+          <div class="price">
+            12 500 000 ₽
+          </div>
+
+          <a href="./pages/54901.html">
+            <button class="buy">
+              Подробнее
+            </button>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ADVANTAGES -->
+
+    <div class="advantages">
+
+      <div class="adv-card">
+
+        <h3>
+          🚛 Большой выбор
+        </h3>
+
+        <p>
+          Самосвалы, тягачи и спецтехника
+          в наличии и под заказ.
+        </p>
+
+      </div>
+
+      <div class="adv-card">
+
+        <h3>
+          💳 Лизинг
+        </h3>
+
+        <p>
+          Выгодные условия лизинга
+          для физических и юридических лиц.
+        </p>
+
+      </div>
+
+      <div class="adv-card">
+
+        <h3>
+          ⚡ Быстрая доставка
+        </h3>
+
+        <p>
+          Отправка техники по всей России
+          в кратчайшие сроки.
+        </p>
+
+      </div>
+
+      <div class="adv-card">
+
+        <h3>
+          🛠 Гарантия
+        </h3>
+
+        <p>
+          Официальная гарантия и сервисное
+          обслуживание техники.
+        </p>
+
+      </div>
+
+    </div>
 
   </div>
-</div>
-<header>
-  🚛 КАМАЗ — Продажа спецтехники
-</header>
 
-<nav>
-  <button data-tab="all" onclick="setTab('all')">Все</button>
-  <button data-tab="dump" onclick="setTab('dump')">Самосвалы</button>
-  <button data-tab="truck" onclick="setTab('truck')">Тягачи</button>
+  <!-- FOOTER -->
 
-  <a href="/pages/leasing.html" class="nav-link" data-tab="leasing">
-    <button>Лизинг</button>
+  <footer class="footer" id="contacts">
+
+    <div class="footer-grid">
+
+      <div>
+
+        <h3>
+          📞 Контакты
+        </h3>
+
+        <p>
+          <a href="tel:+79274191444">
+            +7 (927) 419-14-44
+          </a>
+        </p>
+
+        <p>
+          <a href="mailto:energa432@mail.ru">
+            energa432@mail.ru
+          </a>
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>
+          🏢 Реквизиты
+        </h3>
+
+        <p>
+          ООО "МеталлМаш"
+        </p>
+
+        <p>
+          ИНН 1650450440
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>
+          📄 Документы
+        </h3>
+
+        <p>
+          <a href="./privacy.html">
+            Политика конфиденциальности
+          </a>
+        </p>
+
+        <p>
+          <a href="./consent.html">
+            Согласие на обработку данных
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 ООО "МеталлМаш"
+    </div>
+
+  </footer>
+
+  <!-- FLOATING BUTTONS -->
+
+  <a
+    href="https://wa.me/79274191444"
+    class="floating-btn whatsapp"
+    target="_blank"
+  >
+    <img
+      src="/images/icons/whatsapp.png"
+      alt="WhatsApp"
+    >
   </a>
-</nav>
 
-<section class="hero">
-
-  <h1>
-    Официальная продажа техники КАМАЗ
-  </h1>
-
-  <p>
-    Новые тягачи, самосвалы и спецтехника
-    с доставкой по всей России
-  </p>
-
-  <div class="hero-buttons">
-
-    <a href="#catalog" class="hero-btn primary">
-      Смотреть каталог
-    </a>
-
-    <a href="./pages/leasing.html" class="hero-btn secondary">
-      Лизинг
-    </a>
-
-  </div>
-
-</section>
-
-<div class="container">
-
-  <div class="banner">
-    📢 Здесь можно разместить рекламу, акции или спецпредложения
-  </div>
-
-  <div class="catalog">
-
-    <!-- CARD 1 -->
-    <div class="card dump">
-      <img src="/images/dump/6520-49 (B5)/1 (1).jpg">
-
-      <div class="card-content">
-        <div class="badge">Самосвал</div>
-        <h2>КАМАЗ 6520-49 (B5)</h2>
-        <p>Самосвал 20 тонн</p>
-        <div class="price">8 500 000 ₽</div>
-
-        <a href="./pages/6520.html">
-          <button class="buy" onclick="openModal('КАМАЗ 5490')">
-  Оставить заявку
-</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="card dump">
-      <img src="/images/dump/65115-6056-48/1 (1).jpg">
-
-      <div class="card-content">
-        <div class="badge">Самосвал</div>
-        <h2>КАМАЗ 65115-6056-48</h2>
-        <p>Строительный самосвал</p>
-        <div class="price">7 900 000 ₽</div>
-
-        <a href="./pages/65115.html">
-          <button class="buy">Подробнее</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="card truck">
-      <img src="/images/truck/5490/1 (1).jpg">
-
-      <div class="card-content">
-        <div class="badge">Тягач</div>
-        <h2>КАМАЗ 5490</h2>
-        <p>Магистральный тягач</p>
-        <div class="price">10 200 000 ₽</div>
-
-        <a href="./pages/5490.html">
-          <button class="buy">Подробнее</button>
-        </a>
-      </div>
-    </div>
-
-    <!-- CARD 4 -->
-    <div class="card truck">
-      <img src="/images/truck/54901-70014-CA/1 (1).jpg">
-
-      <div class="card-content">
-        <div class="badge">Тягач</div>
-        <h2>КАМАЗ 54901</h2>
-        <p>Современный тягач</p>
-        <div class="price">12 500 000 ₽</div>
-
-        <a href="./pages/54901.html">
-          <button class="buy">Подробнее</button>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-function showCategory(category) {
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    if (category === 'all') {
-      card.style.display = 'block';
-    } else {
-      card.style.display = card.classList.contains(category) ? 'block' : 'none';
-    }
-  });
-}
-</script>
-<script>
-function showCategory(category) {
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    if (category === 'all') {
-      card.style.display = 'block';
-    } else {
-      card.style.display =
-        card.classList.contains(category) ? 'block' : 'none';
-    }
-  });
-}
-</script>
-
-<!-- 👇 ВОТ СЮДА ДОБАВЛЯЕМ НОВЫЙ JS -->
-<script>
-function setTab(tab) {
-  localStorage.setItem("activeTab", tab);
-  applyActiveTab(tab);
-
-  // если это фильтр — применяем
-  if (tab === 'all' || tab === 'dump' || tab === 'truck') {
-    showCategory(tab);
-  }
-}
-
-function applyActiveTab(tab) {
-  const buttons = document.querySelectorAll("nav button");
-
-  buttons.forEach(btn => {
-    const text = btn.innerText.toLowerCase();
-
-    // сбрасываем активный стиль
-    btn.classList.remove("active-tab");
-
-    // сравнение по типу вкладки
-    if (
-      (tab === "all" && text.includes("все")) ||
-      (tab === "dump" && text.includes("самосвал")) ||
-      (tab === "truck" && text.includes("тягач"))
-    ) {
-      btn.classList.add("active-tab");
-    }
-  });
-
-  // сохраняем активную вкладку
-  localStorage.setItem("activeTab", tab);
-}
-
-// при загрузке страницы
-window.addEventListener("load", () => {
-  const savedTab = localStorage.getItem("activeTab") || "all";
-
-  applyActiveTab(savedTab);
-
-  // применяем фильтр
-  if (savedTab === "dump" || savedTab === "truck" || savedTab === "all") {
-    showCategory(savedTab);
-  }
-});
-</script>
-<div style="
-  margin-top: 60px;
-  padding: 30px;
-  background: #0b1220;
-  border-top: 1px solid #1f2937;
-">
-
-  <div style="max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-
-    <!-- CONTACTS -->
-    <div>
-      <h2 style="margin-bottom: 15px;">📞 Контакты</h2>
-
-      <p style="margin: 8px 0;">
-        📱 <b>Телефон:</b>
-        <a href="tel:+79274191444" style="color:#22c55e; text-decoration:none;">
-          +7 (927) 419-14-44
-        </a>
-      </p>
-
-      <p style="margin: 8px 0;">
-        📧 <b>Email:</b>
-        <a href="mailto:energa432@mail.ru" style="color:#60a5fa; text-decoration:none;">
-          energa432@mail.ru
-        </a>
-      </p>
-
-    </div>
-
-    <!-- COMPANY INFO -->
-    <div>
-      <h2 style="margin-bottom: 15px;">🏢 Реквизиты</h2>
-
-      <p style="margin: 8px 0;">
-        <b>ООО "МеталлМаш"</b>
-      </p>
-
-      <p style="margin: 8px 0;">
-        ИНН: <b>1650450440</b>
-      </p>
-
-      <p style="margin-top: 15px; color:#94a3b8;">
-        Продажа новой и б/у спецтехники КАМАЗ по РФ
-      </p>
-    </div>
-
-  </div>
-
-  <div style="text-align:center; margin-top: 30px; color:#64748b; font-size: 13px;">
-    © 2026 ООО "МеталлМаш" — Все права защищены
-  </div>
-
-</div>
-<div style="
-  text-align:center;
-  margin-top: 25px;
-  padding: 15px;
-  border-top: 1px solid #1f2937;
-  font-size: 13px;
-">
-
-  <a href="./privacy.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">
-    Политика конфиденциальности
+  <a
+    href="https://t.me/goldosm"
+    class="floating-btn telegram"
+    target="_blank"
+  >
+    <img
+      src="/images/icons/telegram.png"
+      alt="Telegram"
+    >
   </a>
 
-  |
-
-  <a href="./consent.html" style="color:#94a3b8; margin:0 10px; text-decoration:none;">
-    Согласие на обработку данных
-  </a>
-
-</div>
-<script>
-let selectedTruck = "";
-
-function openModal(name) {
-  selectedTruck = name;
-  document.getElementById("comment").value =
-    "Интересует: " + name;
-
-  document.getElementById("modal").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
-
-function showCategory(category) {
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    if (category === 'all') {
-      card.style.display = 'block';
-    } else {
-      card.style.display =
-        card.classList.contains(category) ? 'block' : 'none';
-    }
-  });
-}
-</script>
-<!-- FLOATING BUTTONS -->
-
-<a
-  href="https://wa.me/79274191444"
-  class="floating-btn whatsapp"
-  target="_blank"
->
-  💬
-</a>
-
-<a
-  href="https://t.me/goldosm"
-  class="floating-btn telegram"
-  target="_blank"
->
-  ✈
-</a>
 </body>
+
 </html>
