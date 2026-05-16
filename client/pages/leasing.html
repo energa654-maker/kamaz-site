@@ -8,72 +8,79 @@
   <script src="/layout.js"></script>
 
   <style>
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: radial-gradient(circle at top, #1f2937, #0b1220);
-    }
+    /* PAGE */
 
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+body {
+  background: #f4f8fc;
+  color: #0f172a;
+  font-family: Arial, sans-serif;
+}
 
-    .hero p {
-      color: #94a3b8;
-      max-width: 700px;
-      margin: auto;
-    }
+/* TITLE */
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
+h1, h2, h3 {
+  color: #0057b8;
+}
 
-    .box {
-      background: #111827;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #1f2937;
-    }
+/* TEXT */
 
-    .box h3 {
-      margin-bottom: 10px;
-    }
+p, li, span, label {
+  color: #334155;
+  line-height: 1.6;
+}
 
-    .calc {
-      margin-top: 40px;
-      background: #0f172a;
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid #1f2937;
-    }
+/* FORM */
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-    }
+input,
+textarea,
+select {
+  background: white;
 
-    .btn {
-      background: #22c55e;
-      padding: 12px;
-      width: 100%;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+  color: #0f172a;
 
-    .result {
-      margin-top: 15px;
-      font-size: 18px;
-      color: #22c55e;
-    }
+  border: 1px solid #cbd5e1;
+
+  padding: 14px;
+
+  border-radius: 10px;
+}
+
+/* BUTTON */
+
+button {
+  background: #0057b8;
+
+  color: #0f172a;
+
+  border: none;
+
+  padding: 14px 22px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #004799;
+}
+
+/* CARDS */
+
+.card,
+.form-box,
+.block {
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 25px;
+
+  box-shadow:
+    0 10px 30px rgba(15,23,42,0.06);
+}
   </style>
 </head>
 
