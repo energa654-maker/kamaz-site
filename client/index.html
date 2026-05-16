@@ -381,18 +381,7 @@
   </a>
 <!-- QUICK LEAD FORM -->
 
-<div class="container">
-  <h2 class="section-title">Оставить заявку</h2>
-  <p class="section-subtitle">Оставьте номер — менеджер перезвонит</p>
 
-  <div class="adv-card">
-    <input id="name" placeholder="Ваше имя" style="width:100%; padding:14px; margin-bottom:12px;">
-    <input id="phone" placeholder="Телефон" style="width:100%; padding:14px; margin-bottom:12px;">
-    <textarea id="comment" placeholder="Комментарий" style="width:100%; padding:14px; margin-bottom:12px;">Интересует техника КАМАЗ</textarea>
-
-    <button class="buy" onclick="sendLead()">Отправить заявку</button>
-  </div>
-</div>
 
 <script>
 async function sendLead() {
@@ -421,6 +410,18 @@ async function sendLead() {
   document.getElementById('comment').value = '';
 }
 </script>
+<div class="container">
+  <h2 class="section-title">Оставить заявку</h2>
+  <p class="section-subtitle">Оставьте номер — менеджер перезвонит</p>
+
+  <div class="adv-card">
+    <input id="name" placeholder="Ваше имя" style="width:100%; padding:14px; margin-bottom:12px;">
+    <input id="phone" placeholder="Телефон" style="width:100%; padding:14px; margin-bottom:12px;">
+    <textarea id="comment" placeholder="Комментарий" style="width:100%; padding:14px; margin-bottom:12px;">Интересует техника КАМАЗ</textarea>
+
+    <button class="buy" onclick="sendLead()">Отправить заявку</button>
+  </div>
+</div>
 </body>
 
 </html>
