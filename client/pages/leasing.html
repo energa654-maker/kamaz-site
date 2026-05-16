@@ -92,8 +92,21 @@
     }
 
     .calc h2 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       font-size: 34px;
+      color: white;
+    }
+
+    .calc p {
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .calc-divider {
+      margin: 28px 0;
+      border: 0;
+      border-top: 1px solid rgba(255,255,255,0.3);
     }
 
     input {
@@ -103,6 +116,7 @@
       border-radius: 12px;
       border: none;
       font-size: 16px;
+      color: #0f172a;
     }
 
     button {
@@ -116,13 +130,24 @@
       font-weight: bold;
       font-size: 16px;
       cursor: pointer;
+      transition: 0.25s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 
     .result {
       margin-top: 20px;
-      font-size: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.12);
+      font-size: 18px;
       font-weight: bold;
       color: white;
+      line-height: 1.7;
+      white-space: pre-line;
     }
 
     .contact-box {
@@ -140,10 +165,36 @@
       margin-bottom: 15px;
     }
 
+    .contact-box p {
+      color: #334155;
+      margin: 10px 0;
+    }
+
     .contact-box a {
       color: #0057b8;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    @media(max-width: 768px) {
+      .leasing-hero h1 {
+        font-size: 38px;
+      }
+
+      .leasing-hero p {
+        font-size: 18px;
+      }
+
+      .leasing-info,
+      .calc,
+      .contact-box {
+        padding: 25px;
+      }
+
+      .calc h2,
+      .leasing-info h2 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
@@ -154,6 +205,7 @@
 
 <section class="leasing-hero">
   <h1>Лизинг техники КАМАЗ</h1>
+
   <p>
     Приобретайте самосвалы, тягачи и спецтехнику КАМАЗ без полной оплаты.
     Лизинг помогает быстро запустить технику в работу и распределить платежи
@@ -223,7 +275,11 @@
   </div>
 
   <div class="calc">
-    <h2>Калькулятор лизинга</h2>
+    <h2>Калькулятор лизинга + заявка</h2>
+
+    <p>
+      Рассчитайте примерный платеж и сразу отправьте расчет менеджеру.
+    </p>
 
     <input id="price" placeholder="Стоимость техники, ₽">
     <input id="percent" placeholder="Первоначальный взнос, %">
@@ -233,7 +289,24 @@
       Рассчитать платеж
     </button>
 
-    <div class="result" id="result"></div>
+    <div class="result" id="result">
+      Введите данные для расчета
+    </div>
+
+    <hr class="calc-divider">
+
+    <h2>Отправить расчет менеджеру</h2>
+
+    <p>
+      Укажите контакты — заявка с расчетом придет менеджеру в Telegram.
+    </p>
+
+    <input id="name" placeholder="Ваше имя">
+    <input id="phone" placeholder="Телефон">
+
+    <button onclick="sendLeaseLead()">
+      Отправить заявку
+    </button>
   </div>
 
   <div class="contact-box">
@@ -265,6 +338,8 @@
 </div>
 
 <script>
+let leaseResultText = '';
+
 function calcLease() {
   const price = Number(document.getElementById('price').value);
   const percent = Number(document.getElementById('percent').value);
@@ -273,14 +348,66 @@ function calcLease() {
   if (!price || !months) {
     document.getElementById('result').innerText =
       'Введите стоимость техники и срок лизинга';
+
+    leaseResultText = '';
+
     return;
   }
 
-  const down = price * (percent / 100);
-  const monthly = (price - down) / months;
+  const down = price * ((percent || 0) / 100);
+  const leaseAmount = price - down;
+  const monthly = leaseAmount / months;
 
-  document.getElementById('result').innerText =
-    'Примерный платеж: ' + monthly.toFixed(0) + ' ₽ / мес';
+  leaseResultText =
+    'Стоимость техники: ' + price.toLocaleString('ru-RU') + ' ₽\n' +
+    'Первоначальный взнос: ' + (percent || 0) + '% (' + down.toLocaleString('ru-RU') + ' ₽)\n' +
+    'Срок: ' + months + ' мес.\n' +
+    'Сумма к финансированию: ' + leaseAmount.toLocaleString('ru-RU') + ' ₽\n' +
+    'Примерный платеж: ' + monthly.toFixed(0).toLocaleString('ru-RU') + ' ₽ / мес.';
+
+  document.getElementById('result').innerText = leaseResultText;
+}
+
+async function sendLeaseLead() {
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+
+  if (!name || !phone) {
+    alert('Введите имя и телефон');
+    return;
+  }
+
+  if (!leaseResultText) {
+    calcLease();
+  }
+
+  if (!leaseResultText) {
+    alert('Сначала заполните расчет лизинга');
+    return;
+  }
+
+  const comment =
+    'Заявка на лизинг КАМАЗ\n\n' +
+    leaseResultText;
+
+  const res = await fetch('https://kamaz-site.onrender.com/api/leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name,
+      phone,
+      comment
+    })
+  });
+
+  const data = await res.json();
+
+  alert(data.message || 'Заявка отправлена');
+
+  document.getElementById('name').value = '';
+  document.getElementById('phone').value = '';
 }
 </script>
 
