@@ -2,85 +2,149 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Лизинг КАМАЗ — условия и расчет</title>
+  <title>Лизинг КАМАЗ — ООО "МеталлМаш"</title>
 
   <link rel="stylesheet" href="/styles.css">
   <script src="/layout.js"></script>
 
   <style>
-    /* PAGE */
+    body {
+      background: #f4f8fc;
+      color: #0f172a;
+      font-family: Arial, sans-serif;
+    }
 
-body {
-  background: #f4f8fc;
-  color: #0f172a;
-  font-family: Arial, sans-serif;
-}
+    .leasing-hero {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #e7f1ff, #ffffff);
+      border-bottom: 1px solid #dbe7f5;
+    }
 
-/* TITLE */
+    .leasing-hero h1 {
+      font-size: 56px;
+      color: #0057b8;
+      margin-bottom: 20px;
+    }
 
-h1, h2, h3 {
-  color: #0057b8;
-}
+    .leasing-hero p {
+      font-size: 22px;
+      color: #334155;
+      max-width: 850px;
+      margin: auto;
+      line-height: 1.6;
+    }
 
-/* TEXT */
+    .leasing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
 
-p, li, span, label {
-  color: #334155;
-  line-height: 1.6;
-}
+    .leasing-card {
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+      border: 1px solid #dbe7f5;
+      box-shadow: 0 12px 35px rgba(15,23,42,0.06);
+    }
 
-/* FORM */
+    .leasing-card h3 {
+      color: #0057b8;
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
 
-input,
-textarea,
-select {
-  background: white;
+    .leasing-card p {
+      color: #475569;
+      line-height: 1.6;
+    }
 
-  color: #0f172a;
+    .leasing-info {
+      margin-top: 50px;
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      border: 1px solid #dbe7f5;
+      box-shadow: 0 15px 40px rgba(15,23,42,0.06);
+    }
 
-  border: 1px solid #cbd5e1;
+    .leasing-info h2 {
+      color: #0057b8;
+      margin-bottom: 20px;
+      font-size: 34px;
+    }
 
-  padding: 14px;
+    .leasing-info ul {
+      padding-left: 20px;
+      color: #334155;
+      line-height: 1.8;
+    }
 
-  border-radius: 10px;
-}
+    .calc {
+      margin-top: 50px;
+      background: #0057b8;
+      padding: 40px;
+      border-radius: 24px;
+      color: white;
+      box-shadow: 0 20px 50px rgba(0,87,184,0.25);
+    }
 
-/* BUTTON */
+    .calc h2 {
+      margin-bottom: 20px;
+      font-size: 34px;
+    }
 
-button {
-  background: #0057b8;
+    input {
+      width: 100%;
+      padding: 16px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: none;
+      font-size: 16px;
+    }
 
-  color: #0f172a;
+    button {
+      width: 100%;
+      padding: 16px;
+      margin-top: 12px;
+      background: white;
+      color: #0057b8;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  border: none;
+    .result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+    }
 
-  padding: 14px 22px;
+    .contact-box {
+      margin-top: 50px;
+      background: white;
+      padding: 35px;
+      border-radius: 24px;
+      border: 1px solid #dbe7f5;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(15,23,42,0.06);
+    }
 
-  border-radius: 10px;
+    .contact-box h2 {
+      color: #0057b8;
+      margin-bottom: 15px;
+    }
 
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #004799;
-}
-
-/* CARDS */
-
-.card,
-.form-box,
-.block {
-  background: white;
-
-  border-radius: 18px;
-
-  padding: 25px;
-
-  box-shadow:
-    0 10px 30px rgba(15,23,42,0.06);
-}
+    .contact-box a {
+      color: #0057b8;
+      font-weight: bold;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -88,63 +152,135 @@ button:hover {
 
 <script>renderHeader()</script>
 
-<div class="hero">
-  <h1>🚛 Лизинг КАМАЗ</h1>
-  <p>Получите технику без полной оплаты — платите удобными ежемесячными платежами</p>
-</div>
+<section class="leasing-hero">
+  <h1>Лизинг техники КАМАЗ</h1>
+  <p>
+    Приобретайте самосвалы, тягачи и спецтехнику КАМАЗ без полной оплаты.
+    Лизинг помогает быстро запустить технику в работу и распределить платежи
+    на удобный срок.
+  </p>
+</section>
 
 <div class="container">
 
-  <!-- ПРЕИМУЩЕСТВА -->
-  <div class="grid">
+  <div class="leasing-grid">
 
-    <div class="box">
-      <h3>💰 Без крупных вложений</h3>
-      <p>Старт от 0% первоначального взноса</p>
+    <div class="leasing-card">
+      <h3>💰 Минимум вложений</h3>
+      <p>
+        Не нужно сразу оплачивать полную стоимость техники.
+        Первоначальный взнос подбирается индивидуально.
+      </p>
     </div>
 
-    <div class="box">
-      <h3>📉 Налоговая выгода</h3>
-      <p>Лизинговые платежи списываются в расходы</p>
+    <div class="leasing-card">
+      <h3>🚛 Техника в работу</h3>
+      <p>
+        Получаете КАМАЗ в пользование и начинаете зарабатывать,
+        пока оплачиваете его частями.
+      </p>
     </div>
 
-    <div class="box">
-      <h3>🚚 Любая техника</h3>
-      <p>Самосвалы, тягачи, спецтехника</p>
+    <div class="leasing-card">
+      <h3>📄 Для бизнеса</h3>
+      <p>
+        Подходит для ООО, ИП и организаций, которым нужна техника
+        для перевозок, строительства и логистики.
+      </p>
+    </div>
+
+    <div class="leasing-card">
+      <h3>⚡ Быстрое оформление</h3>
+      <p>
+        Поможем подобрать вариант, рассчитать платеж и подготовить заявку
+        на лизинг.
+      </p>
     </div>
 
   </div>
 
-  <!-- КАЛЬКУЛЯТОР -->
+  <div class="leasing-info">
+    <h2>Что можно оформить в лизинг?</h2>
+
+    <ul>
+      <li>КАМАЗ 5490 и 54901 — магистральные тягачи</li>
+      <li>КАМАЗ 6520 и 65115 — строительные самосвалы</li>
+      <li>Новая и б/у спецтехника</li>
+      <li>Техника для перевозок, строительства и промышленности</li>
+    </ul>
+  </div>
+
+  <div class="leasing-info">
+    <h2>Как проходит оформление?</h2>
+
+    <ul>
+      <li>Вы выбираете подходящую технику</li>
+      <li>Мы рассчитываем примерный ежемесячный платеж</li>
+      <li>Согласовываем первоначальный взнос и срок</li>
+      <li>Передаём данные менеджеру для связи</li>
+      <li>Вы получаете предложение по лизингу</li>
+    </ul>
+  </div>
+
   <div class="calc">
+    <h2>Калькулятор лизинга</h2>
 
-    <h2>📊 Калькулятор лизинга</h2>
+    <input id="price" placeholder="Стоимость техники, ₽">
+    <input id="percent" placeholder="Первоначальный взнос, %">
+    <input id="months" placeholder="Срок лизинга, месяцев">
 
-    <input id="price" placeholder="Стоимость техники (₽)">
-    <input id="percent" placeholder="Первоначальный взнос (%)">
-    <input id="months" placeholder="Срок (мес)">
-
-    <button class="btn" onclick="calcLease()">
-      Рассчитать
+    <button onclick="calcLease()">
+      Рассчитать платеж
     </button>
 
     <div class="result" id="result"></div>
+  </div>
 
+  <div class="contact-box">
+    <h2>Получить консультацию по лизингу</h2>
+
+    <p>
+      ООО "МеталлМаш"
+    </p>
+
+    <p>
+      ИНН: <b>1650450440</b>
+    </p>
+
+    <p>
+      Телефон:
+      <a href="tel:+79274191444">
+        +7 (927) 419-14-44
+      </a>
+    </p>
+
+    <p>
+      Email:
+      <a href="mailto:energa432@mail.ru">
+        energa432@mail.ru
+      </a>
+    </p>
   </div>
 
 </div>
 
 <script>
 function calcLease() {
-  const price = +document.getElementById('price').value;
-  const percent = +document.getElementById('percent').value;
-  const months = +document.getElementById('months').value;
+  const price = Number(document.getElementById('price').value);
+  const percent = Number(document.getElementById('percent').value);
+  const months = Number(document.getElementById('months').value);
+
+  if (!price || !months) {
+    document.getElementById('result').innerText =
+      'Введите стоимость техники и срок лизинга';
+    return;
+  }
 
   const down = price * (percent / 100);
   const monthly = (price - down) / months;
 
   document.getElementById('result').innerText =
-    "Примерная ставка: " + monthly.toFixed(0) + " ₽ / мес";
+    'Примерный платеж: ' + monthly.toFixed(0) + ' ₽ / мес';
 }
 </script>
 
