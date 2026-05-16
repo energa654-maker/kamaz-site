@@ -21,7 +21,11 @@
       🚛 КАМАЗ Центр
     </div>
 
-    <nav class="nav">
+    <button class="menu-btn" onclick="toggleMenu()">
+      ☰
+    </button>
+
+    <nav class="nav" id="mobileMenu">
 
       <a href="#catalog">
         Каталог
@@ -33,6 +37,10 @@
 
       <a href="#contacts">
         Контакты
+      </a>
+
+      <a href="#lead-form">
+        Заявка
       </a>
 
     </nav>
@@ -78,6 +86,24 @@
       Надежная техника КАМАЗ для бизнеса
     </p>
 
+    <!-- FILTER -->
+
+    <div class="catalog-filter">
+
+      <button class="filter-btn active" onclick="filterCatalog('all', this)">
+        Все
+      </button>
+
+      <button class="filter-btn" onclick="filterCatalog('dump', this)">
+        Самосвалы
+      </button>
+
+      <button class="filter-btn" onclick="filterCatalog('truck', this)">
+        Тягачи
+      </button>
+
+    </div>
+
     <div class="catalog">
 
       <!-- CARD 1 -->
@@ -86,6 +112,7 @@
 
         <img
           src="/images/dump/6520-49 (B5)/1 (1).jpg"
+          alt="КАМАЗ 6520-49"
         >
 
         <div class="card-content">
@@ -99,7 +126,7 @@
           </h2>
 
           <p>
-            Самосвал 20 тонн
+            Самосвал 20 тонн для строительных и карьерных задач
           </p>
 
           <div class="price">
@@ -122,6 +149,7 @@
 
         <img
           src="/images/dump/65115-6056-48/1 (1).jpg"
+          alt="КАМАЗ 65115"
         >
 
         <div class="card-content">
@@ -135,7 +163,7 @@
           </h2>
 
           <p>
-            Строительный самосвал
+            Строительный самосвал для перевозки сыпучих материалов
           </p>
 
           <div class="price">
@@ -158,6 +186,7 @@
 
         <img
           src="/images/truck/5490/1 (1).jpg"
+          alt="КАМАЗ 5490"
         >
 
         <div class="card-content">
@@ -171,11 +200,11 @@
           </h2>
 
           <p>
-            Магистральный тягач
+            Магистральный тягач для дальних перевозок
           </p>
 
           <div class="price">
-            1 200 000 ₽
+            10 200 000 ₽
           </div>
 
           <a href="./pages/5490.html">
@@ -194,6 +223,7 @@
 
         <img
           src="/images/truck/54901-70014-CA/1 (1).jpg"
+          alt="КАМАЗ 54901"
         >
 
         <div class="card-content">
@@ -207,7 +237,7 @@
           </h2>
 
           <p>
-            Современный тягач
+            Флагманский современный тягач нового поколения
           </p>
 
           <div class="price">
@@ -285,20 +315,47 @@
     </div>
 
   </div>
-   <!-- FLOATING BUTTONS -->
-    
-<div class="container">
-  <h2 class="section-title">Оставить заявку</h2>
-  <p class="section-subtitle">Оставьте номер — менеджер перезвонит</p>
 
-  <div class="adv-card">
-    <input id="name" placeholder="Ваше имя" style="width:100%; padding:14px; margin-bottom:12px;">
-    <input id="phone" placeholder="Телефон" style="width:100%; padding:14px; margin-bottom:12px;">
-    <textarea id="comment" placeholder="Комментарий" style="width:100%; padding:14px; margin-bottom:12px;">Интересует техника КАМАЗ</textarea>
+  <!-- LEAD FORM -->
 
-    <button class="buy" onclick="sendLead()">Отправить заявку</button>
+  <div class="container" id="lead-form">
+
+    <h2 class="section-title">
+      Оставить заявку
+    </h2>
+
+    <p class="section-subtitle">
+      Оставьте контакты — менеджер свяжется с вами
+    </p>
+
+    <div class="adv-card">
+
+      <input
+        id="name"
+        placeholder="Ваше имя"
+        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
+      >
+
+      <input
+        id="phone"
+        placeholder="Телефон"
+        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
+      >
+
+      <textarea
+        id="comment"
+        placeholder="Комментарий"
+        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px; min-height:100px;"
+      >Интересует техника КАМАЗ</textarea>
+
+      <button class="buy" onclick="sendLead()">
+        Отправить заявку
+      </button>
+
+    </div>
+
   </div>
-</div>
+
   <!-- FOOTER -->
 
   <footer class="footer" id="contacts">
@@ -369,16 +426,22 @@
 
   </footer>
 
- 
+  <!-- MOBILE LEAD BUTTON -->
+
+  <a href="#lead-form" class="mobile-lead-btn">
+    Оставить заявку
+  </a>
+
+  <!-- FLOATING BUTTONS -->
 
   <a
-    href="https://wa.me/79274191444"
-    class="floating-btn whatsapp"
+    href="https://max.ru/"
+    class="floating-btn max"
     target="_blank"
   >
     <img
-      src="/images/icons/whatsapp.png"
-      alt="WhatsApp"
+      src="/images/icons/max.png"
+      alt="MAX"
     >
   </a>
 
@@ -388,39 +451,69 @@
     target="_blank"
   >
     <img
-      src="/images/icons/telegram.png"
+      src="/images/icons/Telegram.png"
       alt="Telegram"
     >
   </a>
-<!-- QUICK LEAD FORM -->
 
-<script>
-async function sendLead() {
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const comment = document.getElementById('comment').value;
+  <!-- SCRIPTS -->
 
-  const res = await fetch('https://kamaz-site.onrender.com/api/leads', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name,
-      phone,
-      comment
-    })
-  });
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
 
-  const data = await res.json();
+    function filterCatalog(type, btn) {
+      const cards = document.querySelectorAll('.card');
+      const buttons = document.querySelectorAll('.filter-btn');
 
-  alert(data.message || 'Заявка отправлена');
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
 
-  document.getElementById('name').value = '';
-  document.getElementById('phone').value = '';
-  document.getElementById('comment').value = '';
-}
-</script>
+      btn.classList.add('active');
+
+      cards.forEach(card => {
+        if (type === 'all') {
+          card.style.display = 'block';
+        } else {
+          card.style.display = card.classList.contains(type) ? 'block' : 'none';
+        }
+      });
+    }
+
+    async function sendLead() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const comment = document.getElementById('comment').value;
+
+      if (!name || !phone) {
+        alert('Введите имя и телефон');
+        return;
+      }
+
+      const res = await fetch('https://kamaz-site.onrender.com/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          comment
+        })
+      });
+
+      const data = await res.json();
+
+      alert(data.message || 'Заявка отправлена');
+
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('comment').value = 'Интересует техника КАМАЗ';
+    }
+  </script>
+
 </body>
 
 </html>
