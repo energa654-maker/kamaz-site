@@ -2,50 +2,13 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Админка заявок — КАМАЗ</title>
+<title>CRM — КАМАЗ Центр</title>
 
 <link rel="stylesheet" href="./styles.css">
 
 <style>
-  .stats{
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-
-  gap:20px;
-
-  margin-bottom:30px;
-}
-
-.stat-card{
-  background:white;
-
-  padding:25px;
-
-  border-radius:18px;
-
-  border:1px solid #dbe7f5;
-
-  text-align:center;
-
-  box-shadow:
-    0 10px 30px rgba(15,23,42,.06);
-}
-
-.stat-card h3{
-  font-size:42px;
-
-  color:#0057b8;
-
-  margin-bottom:8px;
-}
-
-.stat-card p{
-  color:#64748b;
-}
 .admin-page {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
   padding: 50px 20px;
 }
@@ -61,12 +24,61 @@
   margin-bottom: 30px;
 }
 
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 14px 24px;
+  background: white;
+  color: #0057b8;
+  border: 1px solid #c8dbf3;
+  border-radius: 999px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #0057b8;
+  color: white;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid #dbe7f5;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(15,23,42,.06);
+}
+
+.stat-card h3 {
+  font-size: 42px;
+  color: #0057b8;
+  margin-bottom: 8px;
+}
+
+.stat-card p {
+  color: #64748b;
+}
+
 .admin-panel {
   background: white;
   border: 1px solid #dbe7f5;
   border-radius: 24px;
   padding: 25px;
   box-shadow: 0 15px 40px rgba(15,23,42,0.06);
+  margin-bottom: 35px;
 }
 
 .admin-actions {
@@ -85,7 +97,8 @@
   font-size: 16px;
 }
 
-.admin-actions button {
+.admin-actions button,
+.form-grid button {
   padding: 14px 22px;
   background: #0057b8;
   color: white;
@@ -95,13 +108,13 @@
   cursor: pointer;
 }
 
-.leads-table {
+.table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.leads-table th,
-.leads-table td {
+.table th,
+.table td {
   padding: 14px;
   border-bottom: 1px solid #e2e8f0;
   text-align: left;
@@ -109,7 +122,7 @@
   vertical-align: top;
 }
 
-.leads-table th {
+.table th {
   color: #0057b8;
   background: #f4f8fc;
 }
@@ -166,8 +179,49 @@
   color: #64748b;
 }
 
+.hidden {
+  display: none;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.form-grid textarea {
+  min-height: 120px;
+  resize: vertical;
+  grid-column: 1 / -1;
+}
+
+.vehicle-img {
+  width: 110px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #dbe7f5;
+}
+
+.help {
+  color: #64748b;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
 @media(max-width: 768px) {
-  .leads-table {
+  .table {
     display: block;
     overflow-x: auto;
   }
@@ -181,84 +235,10 @@
 
 <body>
 
-<header class="header">
-  <div class="logo">🚛 КАМАЗ CRM</div>
-
-  <nav class="nav">
-    <a href="./index.html">Сайт</a>
-    <a href="./admin.html">Заявки</a>
-  </nav>
-</header>
-
-<div class="admin-page">
-
-  <h1 class="admin-title">Админка заявок</h1>
-
-  <p class="admin-subtitle">
-    <div class="stats">
-
-  <div class="stat-card">
-    <h3 id="totalCount">0</h3>
-    <p>Всего заявок</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 id="newCount">0</h3>
-    <p>Новые</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 id="workCount">0</h3>
-    <p>В работе</p>
-  </div>
-
-  <div class="stat-card">
-    <h3 id="doneCount">0</h3>
-    <p>Закрытые</p>
-  </div>
-
-</div>
-    Здесь отображаются все заявки с сайта. Можно менять статус и удалять заявки.
-  </p>
-
-  <div class="admin-panel">
-
-    <div class="admin-actions">
-      <input id="searchInput" placeholder="Поиск по имени, телефону или комментарию">
-      <button onclick="loadLeads()">Обновить</button>
-      <button onclick="exportToExcel()">
-        Скачать Excel
-      </button>
-    </div>
-
-    <table class="leads-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Клиент</th>
-          <th>Телефон</th>
-          <th>Комментарий</th>
-          <th>Статус</th>
-          <th>Дата</th>
-          <th>Действия</th>
-        </tr>
-      </thead>
-
-      <tbody id="leadsBody">
-        <tr>
-          <td colspan="7" class="empty">Загрузка...</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
-
-</div>
-
 <script>
-  const password = prompt('Введите пароль администратора');
+const password = prompt('Введите пароль администратора');
 
-if(password !== 'Kamaz2026') {
+if (password !== 'Kamaz2026') {
   document.body.innerHTML = `
     <div style="
       display:flex;
@@ -275,9 +255,204 @@ if(password !== 'Kamaz2026') {
 
   throw new Error('Access denied');
 }
-const API_URL = 'https://kamaz-site.onrender.com/api/leads';
+</script>
+
+<header class="header">
+  <div class="logo">🚛 КАМАЗ CRM</div>
+
+  <nav class="nav">
+    <a href="./index.html">Сайт</a>
+    <a href="./admin.html">CRM</a>
+  </nav>
+</header>
+
+<div class="admin-page">
+
+  <h1 class="admin-title">CRM панель</h1>
+
+  <p class="admin-subtitle">
+    Управление заявками и техникой сайта КАМАЗ Центр.
+  </p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('leads', this)">
+      Заявки
+    </button>
+
+    <button class="tab-btn" onclick="showTab('vehicles', this)">
+      Техника
+    </button>
+  </div>
+
+  <!-- LEADS TAB -->
+
+  <section id="leadsTab">
+
+    <div class="stats">
+
+      <div class="stat-card">
+        <h3 id="totalCount">0</h3>
+        <p>Всего заявок</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="newCount">0</h3>
+        <p>Новые</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="workCount">0</h3>
+        <p>В работе</p>
+      </div>
+
+      <div class="stat-card">
+        <h3 id="doneCount">0</h3>
+        <p>Закрытые</p>
+      </div>
+
+    </div>
+
+    <div class="admin-panel">
+
+      <div class="admin-actions">
+        <input id="searchInput" placeholder="Поиск по имени, телефону или комментарию">
+
+        <button onclick="loadLeads()">
+          Обновить
+        </button>
+
+        <button onclick="exportToExcel()">
+          Скачать Excel
+        </button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Клиент</th>
+            <th>Телефон</th>
+            <th>Комментарий</th>
+            <th>Статус</th>
+            <th>Дата</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+
+        <tbody id="leadsBody">
+          <tr>
+            <td colspan="7" class="empty">Загрузка...</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+  <!-- VEHICLES TAB -->
+
+  <section id="vehiclesTab" class="hidden">
+
+    <div class="admin-panel">
+
+      <h2 style="color:#0057b8; margin-bottom:10px;">
+        Добавить технику
+      </h2>
+
+      <p class="help">
+        Заполни данные автомобиля. Фото можно указывать как путь внутри сайта
+        например: <b>/images/truck/5490/1 (1).jpg</b>
+      </p>
+
+      <div class="form-grid">
+
+        <input id="vehicleTitle" placeholder="Название, например КАМАЗ 5490">
+
+        <input id="vehiclePrice" placeholder="Цена, например 10200000">
+
+        <select id="vehicleCategory">
+          <option value="truck">Тягач</option>
+          <option value="dump">Самосвал</option>
+        </select>
+
+        <input id="vehicleImage" placeholder="Фото, например /images/truck/5490/1 (1).jpg">
+
+        <input id="vehiclePage" placeholder="Страница, например /pages/5490.html">
+
+        <textarea id="vehicleDescription" placeholder="Описание техники"></textarea>
+
+        <button onclick="addVehicle()">
+          Добавить технику
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="admin-panel">
+
+      <div class="admin-actions">
+        <input id="vehicleSearchInput" placeholder="Поиск техники">
+        <button onclick="loadVehicles()">Обновить</button>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Фото</th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Категория</th>
+            <th>Описание</th>
+            <th>Страница</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+
+        <tbody id="vehiclesBody">
+          <tr>
+            <td colspan="8" class="empty">Загрузка...</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+const API_LEADS = 'https://kamaz-site.onrender.com/api/leads';
+const API_VEHICLES = 'https://kamaz-site.onrender.com/api/vehicles';
 
 let leads = [];
+let vehicles = [];
+
+function showTab(tab, btn) {
+  document.getElementById('leadsTab').classList.add('hidden');
+  document.getElementById('vehiclesTab').classList.add('hidden');
+
+  document.querySelectorAll('.tab-btn').forEach(button => {
+    button.classList.remove('active');
+  });
+
+  btn.classList.add('active');
+
+  if (tab === 'leads') {
+    document.getElementById('leadsTab').classList.remove('hidden');
+    loadLeads();
+  }
+
+  if (tab === 'vehicles') {
+    document.getElementById('vehiclesTab').classList.remove('hidden');
+    loadVehicles();
+  }
+}
+
+/* LEADS */
 
 async function loadLeads() {
   const tbody = document.getElementById('leadsBody');
@@ -289,7 +464,7 @@ async function loadLeads() {
   `;
 
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(API_LEADS);
     const data = await res.json();
 
     leads = data.data || [];
@@ -316,17 +491,18 @@ function renderLeads() {
       String(lead.comment || '').toLowerCase().includes(search)
     );
   });
+
   document.getElementById('totalCount').innerText =
-  leads.length;
+    leads.length;
 
-document.getElementById('newCount').innerText =
-  leads.filter(l => l.status === 'new').length;
+  document.getElementById('newCount').innerText =
+    leads.filter(l => l.status === 'new').length;
 
-document.getElementById('workCount').innerText =
-  leads.filter(l => l.status === 'work').length;
+  document.getElementById('workCount').innerText =
+    leads.filter(l => l.status === 'work').length;
 
-document.getElementById('doneCount').innerText =
-  leads.filter(l => l.status === 'done').length;
+  document.getElementById('doneCount').innerText =
+    leads.filter(l => l.status === 'done').length;
 
   if (filtered.length === 0) {
     tbody.innerHTML = `
@@ -393,7 +569,7 @@ function getStatusText(status) {
 }
 
 async function updateStatus(id, status) {
-  await fetch(`${API_URL}/${id}/status`, {
+  await fetch(`${API_LEADS}/${id}/status`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -409,25 +585,13 @@ async function deleteLead(id) {
 
   if (!ok) return;
 
-  await fetch(`${API_URL}/${id}`, {
+  await fetch(`${API_LEADS}/${id}`, {
     method: 'DELETE'
   });
 
   await loadLeads();
 }
 
-function escapeHtml(text) {
-  return String(text)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
-}
-
-document.getElementById('searchInput').addEventListener('input', renderLeads);
-
-loadLeads();
 function exportToExcel() {
   if (leads.length === 0) {
     alert('Нет заявок для экспорта');
@@ -458,6 +622,163 @@ function exportToExcel() {
   link.download = 'zayavki-kamaz.csv';
   link.click();
 }
+
+/* VEHICLES */
+
+async function loadVehicles() {
+  const tbody = document.getElementById('vehiclesBody');
+
+  tbody.innerHTML = `
+    <tr>
+      <td colspan="8" class="empty">Загрузка...</td>
+    </tr>
+  `;
+
+  try {
+    const res = await fetch(API_VEHICLES);
+    const data = await res.json();
+
+    vehicles = data.data || [];
+
+    renderVehicles();
+
+  } catch (error) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" class="empty">Ошибка загрузки техники</td>
+      </tr>
+    `;
+  }
+}
+
+function renderVehicles() {
+  const tbody = document.getElementById('vehiclesBody');
+  const search = document.getElementById('vehicleSearchInput').value.toLowerCase();
+
+  const filtered = vehicles.filter(vehicle => {
+    return (
+      String(vehicle.title || '').toLowerCase().includes(search) ||
+      String(vehicle.category || '').toLowerCase().includes(search) ||
+      String(vehicle.description || '').toLowerCase().includes(search)
+    );
+  });
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" class="empty">Техника не добавлена</td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(vehicle => {
+    return `
+      <tr>
+        <td>${vehicle.id}</td>
+
+        <td>
+          ${
+            vehicle.image
+              ? `<img class="vehicle-img" src="${escapeHtml(vehicle.image)}">`
+              : '—'
+          }
+        </td>
+
+        <td>${escapeHtml(vehicle.title)}</td>
+
+        <td>${Number(vehicle.price).toLocaleString('ru-RU')} ₽</td>
+
+        <td>${vehicle.category === 'truck' ? 'Тягач' : 'Самосвал'}</td>
+
+        <td>${escapeHtml(vehicle.description || '')}</td>
+
+        <td>
+          ${
+            vehicle.page_url
+              ? `<a href="${escapeHtml(vehicle.page_url)}" target="_blank">Открыть</a>`
+              : '—'
+          }
+        </td>
+
+        <td>
+          <button class="action-btn delete-btn" onclick="deleteVehicle(${vehicle.id})">
+            Удалить
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function addVehicle() {
+  const title = document.getElementById('vehicleTitle').value;
+  const price = document.getElementById('vehiclePrice').value;
+  const category = document.getElementById('vehicleCategory').value;
+  const image = document.getElementById('vehicleImage').value;
+  const page_url = document.getElementById('vehiclePage').value;
+  const description = document.getElementById('vehicleDescription').value;
+
+  if (!title || !price || !category) {
+    alert('Заполните название, цену и категорию');
+    return;
+  }
+
+  const res = await fetch(API_VEHICLES, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title,
+      price,
+      category,
+      description,
+      image,
+      page_url
+    })
+  });
+
+  const data = await res.json();
+
+  alert(data.message || 'Техника добавлена');
+
+  document.getElementById('vehicleTitle').value = '';
+  document.getElementById('vehiclePrice').value = '';
+  document.getElementById('vehicleImage').value = '';
+  document.getElementById('vehiclePage').value = '';
+  document.getElementById('vehicleDescription').value = '';
+
+  await loadVehicles();
+}
+
+async function deleteVehicle(id) {
+  const ok = confirm('Удалить технику?');
+
+  if (!ok) return;
+
+  await fetch(`${API_VEHICLES}/${id}`, {
+    method: 'DELETE'
+  });
+
+  await loadVehicles();
+}
+
+/* HELPERS */
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+document.getElementById('searchInput').addEventListener('input', renderLeads);
+document.getElementById('vehicleSearchInput').addEventListener('input', renderVehicles);
+
+loadLeads();
 </script>
 
 </body>
