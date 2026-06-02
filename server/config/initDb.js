@@ -13,7 +13,21 @@ async function initDb() {
       );
     `);
 
-    console.log('PostgreSQL table leads is ready');
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS vehicles (
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        price BIGINT NOT NULL,
+        category VARCHAR(50) NOT NULL,
+        description TEXT,
+        image TEXT,
+        page_url TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log('PostgreSQL tables are ready');
+
   } catch (error) {
     console.log('DATABASE INIT ERROR:', error.message);
   }

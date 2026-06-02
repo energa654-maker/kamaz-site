@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 
 const leadRoutes = require('./routes/leads');
+const vehicleRoutes = require('./routes/vehicles');
 const initDb = require('./config/initDb');
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 // API
 app.use('/api/leads', leadRoutes);
+app.use('/api/vehicles', vehicleRoutes);
 
 // Главная
 app.get('/', (req, res) => {
