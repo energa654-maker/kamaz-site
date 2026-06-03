@@ -5,460 +5,602 @@
   <meta charset="UTF-8">
 
   <title>
-    КАМАЗ — Продажа спецтехники
+    КамЦентр — продажа техники КАМАЗ
   </title>
 
   <link rel="stylesheet" href="./styles.css">
+
+  <style>
+    .info-section {
+      max-width: 1300px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 35px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid #dbe7f5;
+      box-shadow: 0 15px 40px rgba(15,23,42,0.06);
+    }
+
+    .info-card h3 {
+      color: #0057b8;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .info-card p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .wide-banner {
+      max-width: 1300px;
+      margin: 40px auto 0;
+      padding: 40px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #0057b8, #0077ff);
+      color: white;
+      box-shadow: 0 20px 50px rgba(0,87,184,0.25);
+    }
+
+    .wide-banner h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .wide-banner p {
+      max-width: 850px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .wide-banner a {
+      display: inline-block;
+      margin-top: 25px;
+      background: white;
+      color: #0057b8;
+      padding: 15px 28px;
+      border-radius: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-  <header class="header">
+<header class="header">
+  <div class="logo">
+    🚛 КамЦентр
+  </div>
 
-    <div class="logo">
-      🚛 КАМАЗ Центр
-    </div>
+  <button class="menu-btn" onclick="toggleMenu()">
+    ☰
+  </button>
 
-    <button class="menu-btn" onclick="toggleMenu()">
-      ☰
-    </button>
+  <nav class="nav" id="mobileMenu">
+    <a href="#catalog">Каталог</a>
+    <a href="./pages/leasing.html">Лизинг</a>
+    <a href="#finance">Финансовый сервис</a>
+    <a href="#vacancies">Вакансии</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+</header>
 
-    <nav class="nav" id="mobileMenu">
+<section class="hero">
+  <h1>
+    Продажа техники КАМАЗ для бизнеса
+  </h1>
 
-      <a href="#catalog">
-        Каталог
-      </a>
+  <p>
+    Самосвалы, тягачи и спецтехника КАМАЗ.
+    Подбор техники, лизинг, консультация и сопровождение сделки.
+  </p>
 
-      <a href="./pages/leasing.html">
-        Лизинг
-      </a>
+  <div class="hero-buttons">
+    <a href="#catalog" class="hero-btn primary">
+      Смотреть каталог
+    </a>
 
-      <a href="#contacts">
-        Контакты
-      </a>
+    <a href="#lead-form" class="hero-btn secondary">
+      Оставить заявку
+    </a>
+  </div>
+</section>
 
-      <a href="#lead-form">
-        Заявка
-      </a>
+<section class="info-section" id="about">
+  <h2 class="section-title">
+    О компании КамЦентр
+  </h2>
 
-    </nav>
+  <p class="section-subtitle">
+    Помогаем подобрать технику КАМАЗ под задачи строительства, перевозок и промышленности
+  </p>
 
-  </header>
-
-  <section class="hero">
-
-    <h1>
-      Официальная продажа техники КАМАЗ
-    </h1>
-
-    <p>
-      Новые тягачи, самосвалы и спецтехника
-      с доставкой по всей России
-    </p>
-
-    <div class="hero-buttons">
-
-      <a href="#catalog" class="hero-btn primary">
-        Смотреть каталог
-      </a>
-
-      <a href="./pages/leasing.html" class="hero-btn secondary">
-        Лизинг
-      </a>
-
-    </div>
-
-  </section>
-
-  <div class="container" id="catalog">
-
-    <h2 class="section-title">
-      Каталог техники
-    </h2>
-
-    <p class="section-subtitle">
-      Надежная техника КАМАЗ для бизнеса
-    </p>
-
-    <div class="catalog-filter">
-
-      <button class="filter-btn active" onclick="filterCatalog('all', this)">
-        Все
-      </button>
-
-      <button class="filter-btn" onclick="filterCatalog('dump', this)">
-        Самосвалы
-      </button>
-
-      <button class="filter-btn" onclick="filterCatalog('truck', this)">
-        Тягачи
-      </button>
-
-    </div>
-
-    <div class="catalog" id="catalogList">
-      <p style="color:#64748b;">
-        Загрузка техники...
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>🚛 Подбор техники</h3>
+      <p>
+        Подбираем самосвалы, тягачи и спецтехнику под конкретные задачи:
+        перевозка грузов, строительство, дорожные работы и логистика.
       </p>
     </div>
 
-    <div class="advantages">
-
-      <div class="adv-card">
-        <h3>🚛 Большой выбор</h3>
-        <p>
-          Самосвалы, тягачи и спецтехника
-          в наличии и под заказ.
-        </p>
-      </div>
-
-      <div class="adv-card">
-        <h3>💳 Лизинг</h3>
-        <p>
-          Выгодные условия лизинга
-          для физических и юридических лиц.
-        </p>
-      </div>
-
-      <div class="adv-card">
-        <h3>⚡ Быстрая доставка</h3>
-        <p>
-          Отправка техники по всей России
-          в кратчайшие сроки.
-        </p>
-      </div>
-
-      <div class="adv-card">
-        <h3>🛠 Гарантия</h3>
-        <p>
-          Официальная гарантия и сервисное
-          обслуживание техники.
-        </p>
-      </div>
-
+    <div class="info-card">
+      <h3>📄 Сопровождение сделки</h3>
+      <p>
+        Помогаем с консультацией, расчетом стоимости, подбором комплектации
+        и оформлением заявки.
+      </p>
     </div>
 
+    <div class="info-card">
+      <h3>🌍 Работа по РФ</h3>
+      <p>
+        Работаем с клиентами из разных регионов России и помогаем организовать
+        доставку техники.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="container" id="catalog">
+  <h2 class="section-title">
+    Каталог техники
+  </h2>
+
+  <p class="section-subtitle">
+    Добавляйте технику через CRM — карточки появятся здесь автоматически
+  </p>
+
+  <div class="catalog-filter">
+    <button class="filter-btn active" onclick="filterCatalog('all', this)">
+      Все
+    </button>
+
+    <button class="filter-btn" onclick="filterCatalog('dump', this)">
+      Самосвалы
+    </button>
+
+    <button class="filter-btn" onclick="filterCatalog('truck', this)">
+      Тягачи
+    </button>
   </div>
 
-  <div class="container" id="lead-form">
-
-    <h2 class="section-title">
-      Оставить заявку
-    </h2>
-
-    <p class="section-subtitle">
-      Оставьте контакты — менеджер свяжется с вами
+  <div class="catalog" id="catalogList">
+    <p style="color:#64748b;">
+      Загрузка техники...
     </p>
+  </div>
+
+  <div class="advantages">
+    <div class="adv-card">
+      <h3>🚛 Большой выбор</h3>
+      <p>
+        Самосвалы, тягачи и спецтехника в наличии и под заказ.
+      </p>
+    </div>
 
     <div class="adv-card">
-
-      <input
-        id="name"
-        placeholder="Ваше имя"
-        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
-      >
-
-      <input
-        id="phone"
-        placeholder="Телефон"
-        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
-      >
-
-      <textarea
-        id="comment"
-        placeholder="Комментарий"
-        style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px; min-height:100px;"
-      >Интересует техника КАМАЗ</textarea>
-
-      <button class="buy" onclick="sendLead()">
-        Отправить заявку
-      </button>
-
+      <h3>💳 Лизинг</h3>
+      <p>
+        Возможность оформить технику через финансовые программы.
+      </p>
     </div>
 
+    <div class="adv-card">
+      <h3>⚡ Быстрая обработка</h3>
+      <p>
+        Заявки сразу сохраняются в CRM и доступны менеджеру.
+      </p>
+    </div>
+
+    <div class="adv-card">
+      <h3>🛠 Поддержка</h3>
+      <p>
+        Консультация по моделям, комплектациям и условиям приобретения.
+      </p>
+    </div>
+  </div>
+</div>
+
+<section class="info-section" id="finance">
+  <h2 class="section-title">
+    Финансовый сервис
+  </h2>
+
+  <p class="section-subtitle">
+    Подберите удобный способ приобретения техники
+  </p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>💳 Лизинг</h3>
+      <p>
+        Распределите оплату техники на удобный срок и запустите автомобиль
+        в работу без полной единовременной оплаты.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>📊 Расчет платежа</h3>
+      <p>
+        На странице лизинга можно рассчитать примерный ежемесячный платеж
+        и сразу отправить заявку менеджеру.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>🏢 Для бизнеса</h3>
+      <p>
+        Финансовые решения подходят для организаций, ИП и компаний,
+        которым нужна техника для коммерческой деятельности.
+      </p>
+    </div>
   </div>
 
-  <footer class="footer" id="contacts">
+  <div class="wide-banner">
+    <h2>
+      Рассчитать лизинг КАМАЗ
+    </h2>
 
-    <div class="footer-grid">
+    <p>
+      Укажите стоимость техники, первоначальный взнос и срок.
+      Система рассчитает примерный платеж и отправит заявку в CRM.
+    </p>
 
-      <div>
+    <a href="./pages/leasing.html">
+      Перейти к расчету
+    </a>
+  </div>
+</section>
 
-        <h3>
-          📞 Контакты
-        </h3>
+<section class="info-section" id="vacancies">
+  <h2 class="section-title">
+    Вакансии
+  </h2>
 
-        <p>
-          <a href="tel:+79274191444">
-            +7 (927) 419-14-44
-          </a>
-        </p>
+  <p class="section-subtitle">
+    КамЦентр развивается и открыт к сотрудничеству
+  </p>
 
-        <p>
-          <a href="mailto:energa432@mail.ru">
-            energa432@mail.ru
-          </a>
-        </p>
-
-      </div>
-
-      <div>
-
-        <h3>
-          🏢 Реквизиты
-        </h3>
-
-        <p>
-          ООО "МеталлМаш"
-        </p>
-
-        <p>
-          ИНН 1650450440
-        </p>
-
-      </div>
-
-      <div>
-
-        <h3>
-          📄 Документы
-        </h3>
-
-        <p>
-          <a href="./privacy.html">
-            Политика конфиденциальности
-          </a>
-        </p>
-
-        <p>
-          <a href="./consent.html">
-            Согласие на обработку данных
-          </a>
-        </p>
-
-      </div>
-
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>👨‍💼 Менеджер по продажам</h3>
+      <p>
+        Работа с входящими заявками, консультация клиентов,
+        подбор техники КАМАЗ и сопровождение сделки.
+      </p>
     </div>
 
-    <div class="copyright">
-      © 2026 ООО "МеталлМаш"
+    <div class="info-card">
+      <h3>🚚 Специалист по технике</h3>
+      <p>
+        Консультирование по моделям, характеристикам, комплектациям
+        и техническим особенностям автомобилей.
+      </p>
     </div>
 
-  </footer>
+    <div class="info-card">
+      <h3>📞 Откликнуться</h3>
+      <p>
+        Для связи отправьте заявку через форму ниже или напишите на почту
+        energa432@mail.ru.
+      </p>
+    </div>
+  </div>
+</section>
 
-  <a href="#lead-form" class="mobile-lead-btn">
+<div class="container" id="lead-form">
+  <h2 class="section-title">
     Оставить заявку
-  </a>
+  </h2>
 
-  <a
-    href="https://max.ru/"
-    class="floating-btn max"
-    target="_blank"
-  >
-    <img
-      src="/images/icons/max.png"
-      alt="MAX"
+  <p class="section-subtitle">
+    Оставьте контакты — менеджер свяжется с вами
+  </p>
+
+  <div class="adv-card">
+    <input
+      id="name"
+      placeholder="Ваше имя"
+      style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
     >
-  </a>
 
-  <a
-    href="https://t.me/goldosm"
-    class="floating-btn telegram"
-    target="_blank"
-  >
-    <img
-      src="/images/icons/Telegram.png"
-      alt="Telegram"
+    <input
+      id="phone"
+      placeholder="Телефон"
+      style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px;"
     >
-  </a>
 
-  <script>
-    const VEHICLES_API = 'https://kamaz-site.onrender.com/api/vehicles';
-    const LEADS_API = 'https://kamaz-site.onrender.com/api/leads';
+    <textarea
+      id="comment"
+      placeholder="Комментарий"
+      style="width:100%; padding:16px; margin-bottom:12px; border:1px solid #cbd5e1; border-radius:12px; min-height:100px;"
+    >Интересует техника КАМАЗ</textarea>
 
-    let allVehicles = [];
+    <button class="buy" onclick="sendLead()">
+      Отправить заявку
+    </button>
+  </div>
+</div>
 
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
+<footer class="footer" id="contacts">
+  <div class="footer-grid">
+    <div>
+      <h3>📞 Контакты</h3>
 
-    async function loadVehicles() {
-      const catalog = document.getElementById('catalogList');
+      <p>
+        <a href="tel:+79274191444">
+          +7 (927) 419-14-44
+        </a>
+      </p>
 
-      try {
-        const res = await fetch(VEHICLES_API);
-        const data = await res.json();
+      <p>
+        <a href="mailto:energa432@mail.ru">
+          energa432@mail.ru
+        </a>
+      </p>
+    </div>
 
-        allVehicles = data.data || [];
+    <div>
+      <h3>🏢 Реквизиты</h3>
 
-        renderVehicles(allVehicles);
+      <p>
+        ООО "МеталлМаш"
+      </p>
 
-      } catch (error) {
-        catalog.innerHTML = `
-          <p style="color:red;">
-            Ошибка загрузки техники
-          </p>
-        `;
-      }
-    }
+      <p>
+        ИНН 1650450440
+      </p>
+    </div>
 
-    function renderVehicles(vehicles) {
-      const catalog = document.getElementById('catalogList');
+    <div>
+      <h3>📄 Документы</h3>
 
-      if (!vehicles || vehicles.length === 0) {
-        catalog.innerHTML = `
-          <p style="color:#64748b;">
-            Техника пока не добавлена
-          </p>
-        `;
-        return;
-      }
+      <p>
+        <a href="./privacy.html">
+          Политика конфиденциальности
+        </a>
+      </p>
 
-      catalog.innerHTML = vehicles.map(vehicle => {
-        const categoryText =
-          vehicle.category === 'truck'
-            ? 'Тягач'
-            : 'Самосвал';
+      <p>
+        <a href="./consent.html">
+          Согласие на обработку данных
+        </a>
+      </p>
+    </div>
+  </div>
 
-        const price =
-          Number(vehicle.price).toLocaleString('ru-RU') + ' ₽';
+  <div class="copyright">
+    © 2026 ООО "МеталлМаш" — проект КамЦентр
+  </div>
+</footer>
 
-        const image =
-          vehicle.image || '/images/no-image.jpg';
+<a href="#lead-form" class="mobile-lead-btn">
+  Оставить заявку
+</a>
 
-        const page =
-          vehicle.page_url || '';
+<a
+  href="https://max.ru/"
+  class="floating-btn max"
+  target="_blank"
+>
+  <img
+    src="/images/icons/max.png"
+    alt="MAX"
+  >
+</a>
 
-        return `
-          <div class="card ${escapeHtml(vehicle.category)}">
+<a
+  href="https://t.me/goldosm"
+  class="floating-btn telegram"
+  target="_blank"
+>
+  <img
+    src="/images/icons/Telegram.png"
+    alt="Telegram"
+  >
+</a>
 
-            <img
-              src="${escapeHtml(image)}"
-              alt="${escapeHtml(vehicle.title)}"
-            >
+<script>
+  const VEHICLES_API = 'https://kamaz-site.onrender.com/api/vehicles';
+  const LEADS_API = 'https://kamaz-site.onrender.com/api/leads';
 
-            <div class="card-content">
+  let allVehicles = [];
 
-              <div class="badge">
-                ${categoryText}
-              </div>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
 
-              <h2>
-                ${escapeHtml(vehicle.title)}
-              </h2>
+  async function loadVehicles() {
+    const catalog = document.getElementById('catalogList');
 
-              <p>
-                ${escapeHtml(vehicle.description || '')}
-              </p>
-
-              <div class="price">
-                ${price}
-              </div>
-
-              ${
-                page
-                  ? `
-                    <a href="${escapeHtml(page)}">
-                      <button class="buy">
-                        Подробнее
-                      </button>
-                    </a>
-                  `
-                  : `
-                    <button
-                      class="buy"
-                      onclick="scrollToLead('${escapeAttr(vehicle.title)}')"
-                    >
-                      Оставить заявку
-                    </button>
-                  `
-              }
-
-            </div>
-
-          </div>
-        `;
-      }).join('');
-    }
-
-    function filterCatalog(type, btn) {
-      const buttons = document.querySelectorAll('.filter-btn');
-
-      buttons.forEach(button => {
-        button.classList.remove('active');
-      });
-
-      btn.classList.add('active');
-
-      if (type === 'all') {
-        renderVehicles(allVehicles);
-      } else {
-        renderVehicles(
-          allVehicles.filter(vehicle => vehicle.category === type)
-        );
-      }
-    }
-
-    function scrollToLead(title) {
-      document.getElementById('comment').value =
-        'Интересует техника: ' + title;
-
-      document.getElementById('lead-form').scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-
-    async function sendLead() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const comment = document.getElementById('comment').value;
-
-      if (!name || !phone) {
-        alert('Введите имя и телефон');
-        return;
-      }
-
-      const res = await fetch(LEADS_API, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          phone,
-          comment
-        })
-      });
-
+    try {
+      const res = await fetch(VEHICLES_API);
       const data = await res.json();
 
-      alert(data.message || 'Заявка отправлена');
+      allVehicles = data.data || [];
 
-      document.getElementById('name').value = '';
-      document.getElementById('phone').value = '';
-      document.getElementById('comment').value = 'Интересует техника КАМАЗ';
+      renderVehicles(allVehicles);
+
+    } catch (error) {
+      catalog.innerHTML = `
+        <p style="color:red;">
+          Ошибка загрузки техники
+        </p>
+      `;
+    }
+  }
+
+  function renderVehicles(vehicles) {
+    const catalog = document.getElementById('catalogList');
+
+    if (!vehicles || vehicles.length === 0) {
+      catalog.innerHTML = `
+        <p style="color:#64748b;">
+          Техника пока не добавлена
+        </p>
+      `;
+      return;
     }
 
-    function escapeHtml(text) {
-      return String(text)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+    catalog.innerHTML = vehicles.map(vehicle => {
+      const categoryText =
+        vehicle.category === 'truck'
+          ? 'Тягач'
+          : 'Самосвал';
+
+      const price =
+        Number(vehicle.price).toLocaleString('ru-RU') + ' ₽';
+
+      const image =
+        vehicle.image || '/images/no-image.jpg';
+
+      const page =
+        vehicle.page_url || '';
+
+      return `
+        <div
+          class="card ${escapeHtml(vehicle.category)}"
+          ${page ? `onclick="window.location.href='${escapeAttr(page)}'"` : ''}
+          style="${page ? 'cursor:pointer;' : ''}"
+        >
+          <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(vehicle.title)}"
+          >
+
+          <div class="card-content">
+            <div class="badge">
+              ${categoryText}
+            </div>
+
+            <h2>
+              ${escapeHtml(vehicle.title)}
+            </h2>
+
+            <p>
+              ${escapeHtml(vehicle.description || '')}
+            </p>
+
+            <div class="price">
+              ${price}
+            </div>
+
+            ${
+              page
+                ? `
+                  <button
+                    class="buy"
+                    onclick="event.stopPropagation(); window.location.href='${escapeAttr(page)}'"
+                  >
+                    Подробнее
+                  </button>
+                `
+                : `
+                  <button
+                    class="buy"
+                    onclick="event.stopPropagation(); scrollToLead('${escapeAttr(vehicle.title)}')"
+                  >
+                    Оставить заявку
+                  </button>
+                `
+            }
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function filterCatalog(type, btn) {
+    const buttons = document.querySelectorAll('.filter-btn');
+
+    buttons.forEach(button => {
+      button.classList.remove('active');
+    });
+
+    btn.classList.add('active');
+
+    if (type === 'all') {
+      renderVehicles(allVehicles);
+    } else {
+      renderVehicles(
+        allVehicles.filter(vehicle => vehicle.category === type)
+      );
+    }
+  }
+
+  function scrollToLead(title) {
+    document.getElementById('comment').value =
+      'Интересует техника: ' + title;
+
+    document.getElementById('lead-form').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  async function sendLead() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const comment = document.getElementById('comment').value;
+
+    if (!name || !phone) {
+      alert('Введите имя и телефон');
+      return;
     }
 
-    function escapeAttr(text) {
-      return String(text)
-        .replaceAll('\\', '\\\\')
-        .replaceAll("'", "\\'")
-        .replaceAll('"', '&quot;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;');
-    }
+    const res = await fetch(LEADS_API, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        phone,
+        comment
+      })
+    });
 
-    loadVehicles();
-  </script>
+    const data = await res.json();
+
+    alert(data.message || 'Заявка отправлена');
+
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('comment').value = 'Интересует техника КАМАЗ';
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function escapeAttr(text) {
+    return String(text)
+      .replaceAll('\\', '\\\\')
+      .replaceAll("'", "\\'")
+      .replaceAll('"', '&quot;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+  }
+
+  loadVehicles();
+</script>
 
 </body>
 
