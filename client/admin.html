@@ -376,7 +376,14 @@ if (password !== 'Kamaz2026') {
           <option value="dump">Самосвал</option>
         </select>
 
-        <input id="vehicleImage" placeholder="Фото, например /images/truck/5490/1 (1).jpg">
+        <input id="vehicleImage" placeholder="Главное фото, например /images/truck/5490/1 (1).jpg">
+
+<input id="vehicleImage1" placeholder="Фото 1">
+<input id="vehicleImage2" placeholder="Фото 2">
+<input id="vehicleImage3" placeholder="Фото 3">
+<input id="vehicleImage4" placeholder="Фото 4">
+<input id="vehicleImage5" placeholder="Фото 5">
+<input id="vehicleImage6" placeholder="Фото 6">
 
         <input id="vehiclePage" placeholder="Страница, например /pages/5490.html">
 
@@ -718,6 +725,16 @@ async function addVehicle() {
   const image = document.getElementById('vehicleImage').value;
   const page_url = document.getElementById('vehiclePage').value;
   const description = document.getElementById('vehicleDescription').value;
+  const imagesArray = [
+  document.getElementById('vehicleImage1').value,
+  document.getElementById('vehicleImage2').value,
+  document.getElementById('vehicleImage3').value,
+  document.getElementById('vehicleImage4').value,
+  document.getElementById('vehicleImage5').value,
+  document.getElementById('vehicleImage6').value
+].filter(Boolean);
+
+const images = imagesArray.join(',');
 
   if (!title || !price || !category) {
     alert('Заполните название, цену и категорию');
@@ -730,13 +747,14 @@ async function addVehicle() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      title,
-      price,
-      category,
-      description,
-      image,
-      page_url
-    })
+  title,
+  price,
+  category,
+  description,
+  image,
+  images,
+  page_url
+})
   });
 
   const data = await res.json();
@@ -746,6 +764,12 @@ async function addVehicle() {
   document.getElementById('vehicleTitle').value = '';
   document.getElementById('vehiclePrice').value = '';
   document.getElementById('vehicleImage').value = '';
+  document.getElementById('vehicleImage1').value = '';
+document.getElementById('vehicleImage2').value = '';
+document.getElementById('vehicleImage3').value = '';
+document.getElementById('vehicleImage4').value = '';
+document.getElementById('vehicleImage5').value = '';
+document.getElementById('vehicleImage6').value = '';
   document.getElementById('vehiclePage').value = '';
   document.getElementById('vehicleDescription').value = '';
 

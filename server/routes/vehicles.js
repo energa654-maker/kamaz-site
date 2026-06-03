@@ -28,13 +28,14 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const {
-      title,
-      price,
-      category,
-      description,
-      image,
-      page_url
-    } = req.body;
+  title,
+  price,
+  category,
+  description,
+  image,
+  images,
+  page_url
+} = req.body;
 
     if (!title || !price || !category) {
       return res.status(400).json({
@@ -43,21 +44,22 @@ router.post('/', async (req, res) => {
     }
 
     const result = await db.query(
-      `
-      INSERT INTO vehicles
-      (title, price, category, description, image, page_url)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING *
-      `,
-      [
-        title,
-        price,
-        category,
-        description || '',
-        image || '',
-        page_url || ''
-      ]
-    );
+  `
+  INSERT INTO vehicles
+  (title, price, category, description, image, images, page_url)
+  VALUES ($1, $2, $3, $4, $5, $6, $7)
+  RETURNING *
+  `,
+  [
+    title,
+    price,
+    category,
+    description || '',
+    image || '',
+    images || '',
+    page_url || ''
+  ]
+);
 
     res.json({
       message: 'Техника добавлена',

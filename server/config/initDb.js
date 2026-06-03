@@ -25,6 +25,10 @@ async function initDb() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
+    await db.query(`
+  ALTER TABLE vehicles
+  ADD COLUMN IF NOT EXISTS images TEXT;
+`);
 
     console.log('PostgreSQL tables are ready');
 
